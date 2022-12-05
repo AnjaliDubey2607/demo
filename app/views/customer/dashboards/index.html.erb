@@ -1,0 +1,43 @@
+
+<div class="container p-3 text-right">
+<% Category.category.each do |category| %>
+<div class="btn-group dropdown">
+    <button class="bg-white border-0 dropdown ml-5" type="button" data-toggle="dropdown">
+    <%= image_tag "category" ,style: "height:50px;width:50px;border-radius:50%;margin:5px" %><br>
+    <%= category.name%></button>
+    <ul class="dropdown-menu">
+    <% Category.sub_category(category.id).each do |subcategory| %>
+      <li><a href="/customer/dashboards/product_list/<%=subcategory.id%>" style="margin:10px">
+      <%= subcategory.name%></a></li>
+       <% end %>
+    </ul>
+  </div>
+  <%end%>
+</div>
+
+<div class="container-fluid">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" 
+  style="margin-left:10%; margin-right:10%">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag "slide", alt: "Go Home", class: "d-block",style: "height:500px;width:95%" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag "slide1", alt: "Go Home", class: "d-block",style: "height:500px;width:95%" %>
+    </div>
+     <div class="carousel-item">
+      <%= image_tag "slide2", alt: "Go Home", class: "d-block",style: "margin:25px;height:500px;width:95%" %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+
+<%= render "/products",  product: @products %>

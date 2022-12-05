@@ -1,0 +1,28 @@
+<div style="width:330px;margin-left:40%">
+  <div class="wrapper">
+    <%=  form_with model: [:supplier, @product] do |form| %>
+
+      <div class="m-3"><%= form.text_field :name , placeholder: "Product Name", 
+        class: "form-control", style: "width:330px" %>
+      </div>
+
+      <div class="m-3 pl-5">Category : <%= form.select(:category_id, 
+        Category.category_name.collect {|p| [ p.name, p.id ] }, 
+        { include_blank: true }, {}) %>
+      </div>
+      
+      <div class="m-3"><%= form.number_field :price , placeholder: "Product Price",
+        class: "form-control", style: "width:330px" %>
+      </div>
+      
+      <div class="m-3"><%= form.text_area :description , 
+        placeholder: "Description", class: "form-control", 
+        style: "width:330px" %>
+      </div>
+      
+      <div class="m-3"><%= form.file_field :avatar %></div>
+      <div><%= form.submit%></div>  
+
+    <% end %>
+  </div>
+</div>

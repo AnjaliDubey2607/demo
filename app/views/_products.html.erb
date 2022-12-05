@@ -1,0 +1,37 @@
+<div class="container-fluid">
+	<div class="row" style="margin-left:8% ;margin-right:10%">
+		<% @products.each do |product| %>
+			<div class = "col-lg-3 d-flex align-items-stretch" >
+				<div class="card text-center" style=" margin-bottom : 20px; border:none">
+					<img class="card-img-top" src=<%= product.avatar_url%> alt="Card image cap" 
+						style="height:200px;width:250px;margin:auto;margin-top:20px;" >
+					<div class="card-body">  
+						<h4 class="card-title"><%= product.name.capitalize %></h4>                   
+						<p>Price :<%= product.price %></p>
+						<p style="width:300px"><%#= product.description %></p>
+						<p style="color:grey">shop Now</p>
+						<div class="d-flex">
+							<% if user_signed_in? && current_user.role == "Supplier" %>
+								<button class="bg-primary" style ="border:none;color:white; 
+										width:150px;height:40px;border-radius:10px;margin:auto" >
+										<%= link_to "Show", supplier_product_path(product.id), 
+										style: "text-decoration:none;color:white" %>
+								</button> 
+							<% else %>
+								<button class="bg-primary" style ="border:none;color:white; width:85px;height:40px;
+									border-radius:10px;margin-left:20%" >
+									<%= link_to "Show", customer_dashboard_path(product.id), 
+									style: "text-decoration:none;color:white" %>
+								</button>
+								<button class="bg-primary ml-2" style ="border:none;color:white; width:100px;height:40px;
+								border-radius:10px" >
+								<%= link_to "Add Cart", customer_add_cart_path(product.id), 
+								style: "text-decoration:none;color:white" %></button>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div> 
+		<%end%>     
+	</div>
+</div>

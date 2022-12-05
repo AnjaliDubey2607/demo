@@ -1,0 +1,15 @@
+<div class="container m-5">
+<h1 style="margin-left:10%">New category</h1>
+<br>
+<%= form_with url: "/categories/new", method: :get do |form| %>
+  <%= form.label :category %>
+  <%= form.select :create_new, ["","category","subcategory"] %>
+   <%= form.submit %>
+<% end %>
+<br> 
+  <% if params[:create_new]=="subcategory"%>
+   <%= render "form", category: @categories , method: "POST"%>
+<% elsif params[:create_new]=="category" %>
+   <%= render "form_category", categories: @categories %>
+<% end %>
+</div>

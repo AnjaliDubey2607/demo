@@ -1,0 +1,50 @@
+
+<%total_price = 0%>
+<%if @cartproducts.present? %>
+<h1 class="text-center" style="padding:20px ;background-color:white;">My Cart</h1>
+  <div class="container-fluid">
+    <div class="row m-5">
+      <% @cartproducts.each do |cartproduct| %>
+        <%product=Product.find_product("id",cartproduct.product_id)%>
+        <div class = "col-lg-3 d-flex align-items-stretch">
+					<div class="card " style="width:330px;padding:0; margin-bottom : 20px; ">
+						<img class="card-img-top" src=<%= product.avatar_url%> alt="Card image cap" style="height:250px" >
+						<div class="card-body">  
+							<h4 class="card-title"><%= product.name %></h4>
+							<p class="card-text text-center">
+								<span><b>Quantity</b> : <%= cartproduct.quantity %> </span><br>
+								<span><b>Price  </b> : <%= cartproduct.total_price %></span><br>
+								<span><button style="margin-top:5px"><%= link_to " + ",
+									customer_add_cart_path(cartproduct.product_id) %></button>Quantity
+								<button style="margin-top:5px"><%= link_to " - ",
+									customer_remove_cartproduct_path(cartproduct.product_id) %></button></span><br>
+								<div style="margin-top:5px;text-align:center"><%= button_to "Destroy",
+									customer_dashboard_path(cartproduct.id), method: :delete %></div>
+								<br>
+							</p>
+						</div>
+					</div>
+      	</div>
+      	<%total_price += cartproduct.total_price %>
+    	<%end%>     
+    </div>
+  </div>
+  <%update_cart_price(total_price)%>
+  <% total_price=total_price.to_i.to_s%>
+	<div class="container-fluid bg-white">
+    <div style="width:90%;margin:auto;text-align:right;padding:1%;min-height: 20vh">
+      <p>Total Price : <%= total_price %>
+				<%if @cartproducts.present? %>
+					<button style="margin:5px"><%= link_to "Order", new_charge_path%></button>
+				<% else %>
+					<button style="margin:5px">Order</button>
+				<% end %>
+      </p>
+    </div>
+	</div>
+<% else %>
+  <div class="container-fluid bg-white mt-4" style="height: 75vh">
+    <%= image_tag "cart", alt: "Go Home", class: "d-block", style: "width:100%;height:800px" %>
+    <h3 style="position:absolute;top:70%;left:42%">No Product in Your Cart</h3>
+	</div>
+<% end %>

@@ -1,0 +1,10 @@
+<h3 class="m-3 text-center">Your Products</h3>
+<div class="container-fluid">
+  <%= render "/products",  product: @products %>
+	
+  <button  class="bg-primary" style="margin-bottom:20px;margin-left:14%;
+		border:none;color:white; width:150px;height:40px;border-radius:20px">
+  	<%= link_to "New Product", new_supplier_product_path, 
+		style: "text-decoration:none; color:white" %></button>
+
+</div>

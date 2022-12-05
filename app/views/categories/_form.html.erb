@@ -1,0 +1,23 @@
+<%=  form_with model: @categories do |form| %>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= form.label :Name %> :
+    </div>
+    <div class="col-sm-9">
+      <%= form.text_field :name %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= form.label :Category%>
+    </div>
+    <div class="col-sm-9">
+      <%= form.select(:parent_id, Category.category.collect {|p| [ p.name, p.id ] },{ include_blank: true, :required=>true }, {}) %>
+    </div>
+  </div> 
+  <br>
+   <div>
+  <%= form.submit %>
+  </div>  
+<% end %>

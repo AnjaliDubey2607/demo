@@ -1,0 +1,44 @@
+<h3 style="margin-left:47%; margin-top:20px;margin-bottom:20px">SubCategories</h3>
+<% if current_user.role== "Admin"%>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">SubCategory</th>
+                    <th scope="col" colspan=2>Details</th>   
+                </tr>
+            </thead>
+            <tbody>
+                <% @categories.each do |category| %>
+                    <% if category.parent_id != nil %>
+                        <tr>
+                            <td><%= category.name.capitalize %></td>
+                            <td><%= link_to "Edit Category", edit_category_path(category.id) %></td>
+                            <td><%= link_to "Destroy", category_path(category.id), data: {
+                                        turbo_method: :delete,
+                                        turbo_confirm: "Are you sure?" }%></td>
+                        </tr>    
+                    <% end %>
+                <%end%>
+            </tbody>
+        </table>
+    </div>
+<%else%>
+    <% if @categories.empty? %>
+        <h3 style="text-align:center;margin:300px">No Category Found</h3>
+    <% else %>
+        <div class="container">
+            <div class="row m-5">
+                <% @categories.each do |category| %>
+                    <div class = "col-lg-4">
+                            <div class="card" style="width:300px; margin-bottom:50px;text-align:center;">
+                                <div class="card-body">
+                                    <%= current_user.role=="Customer" ? (link_to category.name.capitalize, customer_product_list_path(category.id)) : category.name.capitalize %>&nbsp;
+                                </div>
+                            </div>
+                        </div>      
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+<%end%>

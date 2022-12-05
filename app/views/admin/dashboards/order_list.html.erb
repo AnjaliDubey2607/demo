@@ -1,0 +1,31 @@
+<h2 style="margin-left:50%">Orders</h2>
+<div class="container" style="background-color:white">
+<% @orders.each do |order| %>
+    <% @cartproducts = CartProduct.return_cart_product("cart_id",order.cart_id)%>
+    <div class="container" style="background-color:white">
+        <p>Ordered on <%= order.created_at.time.strftime("%d/%m/%Y at %H:%M:%S") %>.</p>
+        <div>
+            <div class="row m-5">
+                <% @cartproducts.each do |cartproduct| %>
+                    <% if cartproduct.present?%>
+                    <div class = "col-lg-4 d-flex align-items-stretch text-center">
+                        <div class="card" style=" padding:0;margin-bottom : 20px">
+                            <% product=Product.find_product("id",cartproduct.product_id) %>
+                            <img class="card-img-top" src=<%= product.avatar_url%> alt="Card image cap" style="width:250px;height:250px" >
+                            <div class="card-body">  
+                                <h4 class="card-title"><%= product.name %></h4>
+                                <p class="card-text">
+                                <span><b>Quantity</b> : <%= cartproduct.quantity %> </span><br>
+                                <span><b>Price  </b> : <%= cartproduct.total_price %></span><br>
+                                <span><b>Order By </b> :  <%= User.user_name(order.user_id) %></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <%end%> 
+                <%end%>     
+            </div>
+        </div>
+    </div>
+<%end%>
+</div>

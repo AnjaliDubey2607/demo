@@ -1,0 +1,23 @@
+<h3 style="margin-left:47%; margin-top:20px;margin-bottom:20px">Users</h3>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name.capitalize %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role%></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

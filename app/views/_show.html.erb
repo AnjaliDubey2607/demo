@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="text-center" style="margin-top:50px;margin-left:19%;
+		background-color:white;width:62%;padding:20px">Your Product </h1> 
+  <div class="row" style="margin-right:10%">
+    <div class = "col-lg-5 d-flex align-items-stretch" style="margin-left: 40%">
+      <div class="card p-2" style="  margin-bottom : 20px;">
+        <img class="card-img-top" src=<%= @product.avatar_url%> alt="Card image cap" 
+          style="height:200px;width:250px;margin:auto;margin-top:20px;" >
+        <div class="card-body text-center">  
+          <h4 class="card-title"><%= @product.name.capitalize %></h4>                   
+          <p>Price :<%= @product.price %></p>
+          <p style="width:250px; text-align:justify;"><b>Description : </b><%= @product.description %></p>
+          <div class="d-flex ml-3">
+						<% if user_signed_in? && current_user.role == "Supplier" %>
+							<button class="bg-primary m-1" style="border:none;color:white; 
+								width:100px;height:40px;border-radius:10px">
+								<%= link_to "Edit", edit_supplier_product_path(@product.id) ,
+								style: "text-decoration:none; color:white;"%>
+							</button>
+							<%= button_to "Destroy", supplier_product_path(@product.id),method: :delete, data: {
+									confirm: "Are you sure?"}, class: "bg-primary m-1" , 
+							style: "border:none;color:white; width:100px;height:40px;border-radius:10px"%>
+						<% else %>
+								<button class="bg-primary m-auto" style ="border:none;color:white; width:150px;height:40px;
+								border-radius:10px" >
+								<%= link_to "Add To Cart", customer_add_cart_path(product.id), 
+								style: "text-decoration:none;color:white" %></button>
+						<% end %>
+          <div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>

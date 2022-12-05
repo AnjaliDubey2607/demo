@@ -1,0 +1,8 @@
+<div class="container m-5">
+<h1 style="margin-left:10%">Edit Subcategory</h1>
+<% if !@categories.parent_id.nil? %>
+    <%= render "form", categories: @categories %>
+<% else %>
+    <%= render "form_category", categories: @categories %>
+<%end%>
+</div>
