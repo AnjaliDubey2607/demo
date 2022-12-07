@@ -34,12 +34,12 @@ class CategoriesController < ApplicationController
     end
     
     def destroy
-        @categories = Category.find_category("id",params[:id])
-        @categories.destroy
-        if @categories.parent_id.nil?
-          redirect_to categories_path(:parent_id), status: :see_other
+        @category = Category.find_category("id",params[:id])
+        @category.destroy
+        unless @category.parent_id.nil?
+          redirect_to category_path(@category.parent_id)
         else
-          redirect_to category_path
+          redirect_to categories_path
         end
       end
     private

@@ -5,7 +5,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">SubCategory</th>
-                    <th scope="col" colspan=2>Details</th>   
+                    <th scope="col" colspan=2 class="text-center">Details</th>   
                 </tr>
             </thead>
             <tbody>
@@ -14,9 +14,8 @@
                         <tr>
                             <td><%= category.name.capitalize %></td>
                             <td><%= link_to "Edit Category", edit_category_path(category.id) %></td>
-                            <td><%= link_to "Destroy", category_path(category.id), data: {
-                                        turbo_method: :delete,
-                                        turbo_confirm: "Are you sure?" }%></td>
+                            <td><%= button_to "Destroy",category_path(category.id),method: :delete, data: {
+									confirm: "Are you sure?"}%></td>
                         </tr>    
                     <% end %>
                 <%end%>

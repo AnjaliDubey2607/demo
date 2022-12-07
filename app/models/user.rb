@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: :true
   validates :role, presence: :true
+  validates :email, presence: :true, uniqueness: :true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:omniauthable, omniauth_providers: [:google_oauth2]
