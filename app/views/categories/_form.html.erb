@@ -13,7 +13,7 @@
       <%= form.label :Category%>
     </div>
     <div class="col-sm-9">
-      <%= form.select(:parent_id, Category.category.collect {|p| [ p.name, p.id ] },{ include_blank: true, :required=>true }, {}) %>
+      <%= form.select(:parent_id, Category.category.collect {|p| [ p.name, p.id ] },{ include_blank: false, :required=>true }, {}) %>
     </div>
   </div> 
   <br>
