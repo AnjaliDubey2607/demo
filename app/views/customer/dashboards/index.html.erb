@@ -7,6 +7,7 @@
     <%= category.name%></button>
     <ul class="dropdown-menu">
     <% Category.sub_category(category.id).each do |subcategory| %>
+
       <li><a href="/customer/dashboards/product_list/<%=subcategory.id%>" style="margin:10px">
       <%= subcategory.name%></a></li>
        <% end %>
