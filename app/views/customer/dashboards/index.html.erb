@@ -5,13 +5,7 @@
     <button class="bg-white border-0 dropdown ml-5" type="button" data-toggle="dropdown">
     <%= image_tag "category" ,style: "height:50px;width:50px;border-radius:50%;margin:5px" %><br>
     <%= category.name%></button>
-    <ul class="dropdown-menu">
-    <% Category.sub_category(category.id).each do |subcategory| %>
-
-      <li><a href="/customer/dashboards/product_list/<%=subcategory.id%>" style="margin:10px">
-      <%= subcategory.name%></a></li>
-       <% end %>
-    </ul>
+  
   </div>
   <%end%>
 </div>
