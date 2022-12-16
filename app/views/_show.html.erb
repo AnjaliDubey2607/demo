@@ -9,7 +9,7 @@
         <div class="card-body text-center">  
           <h4 class="card-title"><%= @product.name.capitalize %></h4>                   
           <p>Price :<%= @product.price %></p>
-          <p style="width:250px; text-align:justify;"><b>Description : </b><%= @product.description %></p>
+          <p style="width:250px; text-align:justify-center;"><b>Description : </b><%= @product.description %></p>
           <div class="d-flex ml-3">
 						<% if user_signed_in? && current_user.role == "Supplier" %>
 							<button class="bg-primary m-1" style="border:none;color:white; 
