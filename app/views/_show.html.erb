@@ -4,7 +4,7 @@
   <div class="row" style="margin-right:10%">
     <div class = "col-lg-5 d-flex align-items-stretch" style="margin-left: 40%">
       <div class="card p-2" style="  margin-bottom : 20px;">
-        <<%= image_tag( product.avatar_url, style: "height:200px;width:200px;margin:auto;margin-top:30px;", class: "card-img-top" )%>
+        <%= image_tag( product.avatar_url, style: "height:200px;width:200px;margin:auto;margin-top:30px;", class: "card-img-top" )%>
         <div class="card-body text-center">  
           <h4 class="card-title"><%= @product.name.capitalize %></h4>                   
           <p>Price :<%= @product.price %></p>
