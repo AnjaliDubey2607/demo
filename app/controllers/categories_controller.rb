@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       if @categories.save
         redirect_to categories_path
       else
-        render :new, status: :unprocessable_entity
+       render :new, status: :unprocessable_entity
       end
     end
     
@@ -26,6 +26,7 @@ class CategoriesController < ApplicationController
     
     def update
         @categories = Category.find_category("id",params[:id])
+        debugger
         if @categories.update(category_params)
           redirect_to categories_path 
         else

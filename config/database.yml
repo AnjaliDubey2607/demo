@@ -28,12 +28,12 @@ development:
 # production:
 #   <<: *default
 #   database: flatiron_mod3_production
-# test:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: ecommerce_development
-#   pool: 5
-#   username: postgres
-#   password: 123456
-#   template: template0
-#   timeout: 5000
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: ecommerce_development
+  pool: 5
+  username: postgres
+  password: 123456
+  template: template0
+  timeout: 5000
