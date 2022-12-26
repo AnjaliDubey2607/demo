@@ -1,0 +1,25 @@
+#  let(:user) {User.create(name:"anjali",email:"dunje@ci.com",role:"Admin",password: "1234545")}
+user:
+  id: 1
+  name: Admin
+  # login: admin
+  email: admin@hotmail.com
+  role: Admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  created_at: <%= 1.days.ago.to_s :db %>
+
+supplier:
+  id: 2
+  email: supplier@hotmail.com
+  role: Supplier
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  name: Supplier
+
+customer:
+  id: 3
+  email: customer@hotmail.com
+  role: Customer
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  name: Customer

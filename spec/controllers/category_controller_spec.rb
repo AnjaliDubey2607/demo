@@ -1,30 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
+    fixtures :all
     before do
+        user = users(:user)
         sign_in(user)
-        current_user=user
+        current_user = user
     end
     
     describe "subcategory create" do
         render_views
-        let(:user) {User.create(name:"anjali",email:"dunje@ci.com",role:"Admin",password: "1234545")}
-        let(:category1) {Category.create(name:"toys")}
         
         it "subcategory create with correct params" do
-            category_params= { category: {name:"shirt",parent_id: category1.id} }
+            category_params= { category: {name:"shirt",parent_id: categories[0].id} }
             post :create,params: category_params
             redirect_to categories_path
         end
 
         it "subcategory create without correct params" do
-            category_params= { category: {name:nil, parent_id: category1.id} }
+            category_params= { category: {name:nil, parent_id: categories[0].id} }
             post :create,params: category_params
             get :new
             expect(response.status).to eq(200)
         end
 
-        it "category create" do
+        it "category create with correct params" do
             category_params= { category: { name:"shirt" } }
             post :create,params: category_params
             redirect_to categories_path
@@ -40,34 +40,46 @@ RSpec.describe CategoriesController, type: :controller do
 
     describe "subcategory update" do
         render_views
-        let(:user) {User.create(name:"anjali",email:"dunje@ci.com",role:"Admin",password: "1234545")}
-        let(:category1) {Category.create(name:"toys")}
+        # let(:user) {User.create(name:"anjali",email:"dunje@ci.com",role:"Admin",password: "1234545")}
+       # let(:category1) {Category.create(name:"toys")}
         
-        it "subcategory create with correct params" do
-            category_params= { category: {parent_id: nil} ,id: category1.id }
+        it "subcategory update with correct params" do
+            category_params= { category: {parent_id: nil} ,id: categories[0].id }
             put :update,params: category_params
             expect(response.status).to eq(302)
         end
 
-        xit "subcategory create without correct params" do
-            category_params= { category: {name:nil, parent_id: 5} ,id: category1.id }
-            post :update,params: category_params
-            get :edit
+        it "subcategory update without correct params" do
+            category_params= { category: {name: nil} ,id: categories[0].id }
+            post :update, params: category_params
+            get :new
         end
 
-        xit "category create" do
-            category_params= { category: { name:"shirt" } ,id: category1.id}
-            post :create,params: category_params
-            redirect_to category_path(category1.id)
+        it "update category with correct params" do
+            category_params= { category: { name:"shirt" } ,id: categories[0].id}
+            post :update,params: category_params
+            redirect_to category_path(categories[0].id)
         end
         
-        xit "category create without correct params" do
-            category_params= { category: { name:nil } ,id: category1.id}
-            post :create,params: category_params
+        it "update category without correct params" do
+            category_params= { category: { name:nil } ,id: categories[0].id}
+            post :update,params: category_params
             get :new
             expect(response.status).to eq(200)
         end
+    end
+
+    describe "subcategory destroy" do
+        render_views
+        # let(:user) {User.create(name:"anjali",email:"dunje@ci.com",role:"Admin",password: "1234545")}
+       # let(:category1) {Category.create(name:"toys")}
         
+        it "subcategory destroy" do
+            category_params= {id: categories[0].id }
+            delete :destroy,params: category_params
+            expect(response.status).to eq(302)
+        end
+
     end
 end
  

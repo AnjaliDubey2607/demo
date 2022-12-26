@@ -1,0 +1,5 @@
+category1:
+  name: "toys"
+  parent_id: "nil"
+  created_at: <%= 1.days.ago.to_s :db %>
+

@@ -77,3 +77,4 @@ gem 'carrierwave', '~> 2.0'
 gem 'stripe'
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
+

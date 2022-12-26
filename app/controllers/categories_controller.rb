@@ -36,6 +36,7 @@ class CategoriesController < ApplicationController
     
     def destroy
         @category = Category.find_category("id",params[:id])
+        debugger
         @category.destroy
         unless @category.parent_id.nil?
           redirect_to category_path(@category.parent_id)
